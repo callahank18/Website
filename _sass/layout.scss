@@ -18,6 +18,8 @@
 }
 
 header {
+	display: flex;
+	align-items: center;
 	color: #fff;
 	padding: 0px 0;
 	background: $brand-color; /* Old browsers */
