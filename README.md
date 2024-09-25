@@ -16,6 +16,4 @@ If you don't see your changes immediately after refreshing, try the following:
 
 * **Double-check the correct file:** Ensure you're editing the correct HTML file associated with the page.
 * **Clear your browser cache:** Sometimes, browsers cache old versions of websites. Clearing the cache can resolve this issue.
-* **Restart your web server (if applicable):** If you're using a local web server, a restart might be necessary for the changes to take effect. 
-
-If you've tried these steps and still don't see your changes, please [open an issue](link-to-issue-tracker) detailing the problem you're encountering.
+* **Giving up:** Sometimes giving up is the only solution. 
