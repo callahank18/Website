@@ -1,15 +1,112 @@
 ---
 title: <strong>Media</strong>
-description: Photos will be posted in the future!
+description: Here's some photos from some of our previous events!
 ---
 
-<p class="editor-link" style="text-align: center;"><a href="cloudcannon:collections/_staff_members/" class="btn"><strong>&#9998;</strong> Manage Staff members</a></p>
-<ul class="staff">
-	{% for person in site.staff_members %}
-		<li>
-			<div class="square-image"><img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}"/></div>
-			<div class="name"><a target="_blank" href="https://twitter.com/{{ person.twitter }}">{{ person.name }}</a></div>
-			<div class="position">{{ person.position }}</div>
-		</li>
-	{% endfor %}
-</ul>
+<style>
+	.image-gallery {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 20px;
+		padding: 20px;
+	}
+	
+	.image-gallery img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 8px;
+		transition: transform 0.3s ease;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+	
+	.image-gallery img:hover {
+		transform: scale(1.05);
+		box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+	}
+	
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.9);
+		padding: 20px;
+	}
+	
+	.modal.show {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.modal-content {
+		max-width: 95vw;
+		max-height: 95vh;
+		width: auto;
+		height: auto;
+		object-fit: contain;
+		margin: auto;
+		display: block;
+		cursor: pointer;
+	}
+	
+	.modal-close {
+		position: absolute;
+		top: 15px;
+		right: 35px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	</style>
+	
+	<div id="imageModal" class="modal">
+		<span class="modal-close">&times;</span>
+		<img class="modal-content" id="modalImg">
+	</div>
+	
+	<div class="image-gallery">
+		<img src="/images/SL_Hackathon.jpg">
+		<img src="/images/MediaDrCoker.jpg">
+		<img src="/images/MediaCyphercon.jpg">
+		<img src="/images/MediaHackathon.jpg">
+	</div>
+	
+	<script>
+	const modal = document.getElementById('imageModal');
+	const modalImg = document.getElementById('modalImg');
+	const closeBtn = document.getElementsByClassName('modal-close')[0];
+	
+	document.querySelectorAll('.image-gallery img').forEach(img => {
+		img.onclick = function() {
+			modal.classList.add('show');
+			modalImg.src = this.src;
+		}
+	});
+	
+	closeBtn.onclick = function() {
+		modal.classList.remove('show');
+	}
+	
+	modal.onclick = function(e) {
+		if (e.target === modal || e.target === modalImg) {
+			modal.classList.remove('show');
+		}
+	}
+	</script>
+	
+	<p class="editor-link" style="text-align: center;"><a href="cloudcannon:collections/_staff_members/" class="btn"><strong>&#9998;</strong> Manage Staff members</a></p>
+	<ul class="staff">
+		{% for person in site.staff_members %}
+			<li>
+				<div class="square-image"><img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}"/></div>
+				<div class="name"><a target="_blank" href="https://twitter.com/{{ person.twitter }}">{{ person.name }}</a></div>
+				<div class="position">{{ person.position }}</div>
+			</li>
+		{% endfor %}
+	</ul>
