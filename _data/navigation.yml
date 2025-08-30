@@ -2,6 +2,10 @@
   link: /
   new_window: false
   highlight: false
+- name: Info
+  link: /getting-started/
+  new_window: false
+  highlight: false
 - name: Getting Started
   link: /getting-started/
   new_window: false
